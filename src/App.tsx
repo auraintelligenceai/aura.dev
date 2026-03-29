@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Hero } from './components/Hero'
+import { About } from './components/About'
 import { Projects } from './components/Projects'
+import { Blog } from './components/Blog'
 import { Skills } from './components/Skills'
 import { Contact } from './components/Contact'
 import { Navigation } from './components/Navigation'
@@ -26,28 +28,31 @@ function App() {
           top: cursorPos.y - 8,
         }}
       />
-      
+
       {/* Scan line effect */}
       <div className="scan-line pointer-events-none" />
-      
+
       {/* Grid background */}
       <div className="fixed inset-0 grid-pixel opacity-30 pointer-events-none" />
-      
+
       <Navigation />
+
       <main>
         <Hero />
+        <About />
         <Projects />
+        <Blog />
         <Skills />
         <Contact />
       </main>
-      
+
       {/* Footer */}
       <footer className="py-8 text-center border-t-4 border-pixel-accent/30">
         <p className="font-pixel text-xs text-pixel-cyan/60">
           BUILT WITH REACT + TAILWIND + PIXEL LOVE
         </p>
         <p className="font-code text-sm text-white/40 mt-2">
-          © 2026 AURA INTELLIGENCE
+          &copy; 2026 AURA INTELLIGENCE
         </p>
       </footer>
     </div>

@@ -3,7 +3,9 @@ import { Menu, X, Terminal } from 'lucide-react'
 
 const navLinks = [
   { label: 'HOME', href: '#hero' },
+  { label: 'ABOUT', href: '#about' },
   { label: 'PROJECTS', href: '#projects' },
+  { label: 'BLOG', href: '#blog' },
   { label: 'SKILLS', href: '#skills' },
   { label: 'CONTACT', href: '#contact' },
 ]
@@ -30,9 +32,13 @@ export function Navigation() {
   }
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-pixel-bg/95 backdrop-blur-sm border-b-4 border-pixel-accent/20' : 'bg-transparent'
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-pixel-bg/95 backdrop-blur-sm border-b-4 border-pixel-accent/20'
+          : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -50,7 +56,7 @@ export function Navigation() {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleClick(e, link.href)}
-                className="relative px-4 py-2 font-code text-sm hover:text-pixel-accent transition-colors group"
+                className="relative px-3 py-2 font-code text-sm hover:text-pixel-accent transition-colors group"
               >
                 {link.label}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-pixel-accent group-hover:w-3/4 transition-all" />
@@ -93,7 +99,7 @@ export function Navigation() {
 
       {/* Active section indicator */}
       <div className="h-1 bg-pixel-dark">
-        <div 
+        <div
           className="h-full bg-gradient-to-r from-pixel-accent via-pixel-cyan to-pixel-magenta transition-all duration-500"
           style={{ width: scrolled ? '100%' : '0%' }}
         />
