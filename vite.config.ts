@@ -9,10 +9,24 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: './',
+  base: '/',
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false,
     minify: 'terser',
+    target: 'ES2020',
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['react', 'react-dom'],
+          'icons': ['lucide-react'],
+        },
+      },
+    },
+  },
+  server: {
+    port: 3000,
+    strictPort: false,
   },
 })
