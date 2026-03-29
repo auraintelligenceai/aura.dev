@@ -85,10 +85,15 @@
   }
   
   .scan-line {
-    @apply absolute w-full h-1 bg-pixel-accent/30;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 255, 136, 0.3);
     animation: scan-down 3s linear infinite;
     box-shadow: 0 0 10px var(--accent);
+    pointer-events: none;
   }
   
   @keyframes scan-down {
