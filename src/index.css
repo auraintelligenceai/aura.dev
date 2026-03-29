@@ -10,7 +10,6 @@
 
 @layer base {
   * {
-    @apply border-pixel-accent/20;
     box-sizing: border-box;
     image-rendering: pixelated;
   }

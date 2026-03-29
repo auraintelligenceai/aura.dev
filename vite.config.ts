@@ -15,15 +15,6 @@ export default defineConfig({
     sourcemap: false,
     minify: 'terser',
     target: 'ES2020',
-    cssCodeSplit: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vendor': ['react', 'react-dom'],
-          'icons': ['lucide-react'],
-        },
-      },
-    },
   },
   server: {
     port: 5173,
