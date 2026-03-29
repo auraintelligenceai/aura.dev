@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #00ff88;
+  --accent-cyan: #00ffff;
+  --accent-magenta: #ff00ff;
+}
+
+@layer base {
+  * {
+    @apply border-pixel-accent/20;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+  }
+  
+  body {
+    @apply bg-pixel-bg text-white;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Press Start 2P', cursive;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+}
+
+@layer components {
+  .pixel-btn {
+    @apply relative px-6 py-3 font-pixel text-xs uppercase tracking-wider;
+    background: #151520;
+    border: 4px solid var(--accent);
+    box-shadow: 6px 6px 0 rgba(0,255,136,0.5);
+    transition: all 0.15s ease;
+  }
+  
+  .pixel-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0 rgba(0,255,136,0.5);
+    @apply text-pixel-accent;
+  }
+  
+  .pixel-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0 rgba(0,255,136,0.5);
+  }
+  
+  .pixel-card {
+    @apply relative p-6 bg-pixel-dark;
+    border: 4px solid var(--accent-cyan);
+    box-shadow: 8px 8px 0 rgba(0,255,255,0.3);
+  }
+  
+  .pixel-border {
+    border: 4px solid var(--accent);
+    box-shadow: 
+      inset -4px -4px 0 rgba(0,0,0,0.5),
+      inset 4px 4px 0 rgba(255,255,255,0.1),
+      6px 6px 0 rgba(0,255,136,0.3);
+  }
+  
+  .pixel-avatar {
+    width: 128px;
+    height: 128px;
+    background: linear-gradient(135deg, #00ff88 0%, #00ffff 100%);
+    image-rendering: pixelated;
+    box-shadow: 
+      0 0 0 4px var(--accent),
+      8px 8px 0 rgba(0,255,136,0.5);
+  }
+  
+  .glitch-text {
+    position: relative;
+    animation: glitch-text 3s infinite;
+  }
+  
+  @keyframes glitch-text {
+    0%, 90%, 100% { text-shadow: none; }
+    92% { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
+    94% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
+    96% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; }
+    98% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
+  }
+  
+  .scan-line {
+    @apply absolute w-full h-1 bg-pixel-accent/30;
+    top: 0;
+    animation: scan-down 3s linear infinite;
+    box-shadow: 0 0 10px var(--accent);
+  }
+  
+  @keyframes scan-down {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  
+  .tech-badge {
+    @apply inline-block px-3 py-1 font-pixel text-xs;
+    background: #1a1a2e;
+    border: 2px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+  }
+}
+
+@layer utilities {
+  .text-shadow-pixel {
+    text-shadow: 
+      4px 4px 0 rgba(0,255,136,0.3),
+      -1px -1px 0 #000;
+  }
+  
+  .grid-pixel {
+    background-image: 
+      linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}

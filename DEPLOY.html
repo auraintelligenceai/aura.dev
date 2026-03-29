@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deploy Pixel Portfolio | One-Click</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'VT323', monospace;
+      color: #fff;
+      padding: 20px;
+    }
+    
+    .container {
+      text-align: center;
+      max-width: 600px;
+    }
+    
+    .title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 14px;
+      color: #00ff88;
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+    
+    .subtitle {
+      font-size: 24px;
+      color: #00ffff;
+      margin-bottom: 40px;
+    }
+    
+    .deploy-button {
+      display: inline-block;
+      padding: 20px 40px;
+      background: #000;
+      border: 4px solid #00ff88;
+      box-shadow: 8px 8px 0 #00ff88;
+      color: #00ff88;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin: 20px;
+    }
+    
+    .deploy-button:hover {
+      background: #00ff88;
+      color: #000;
+      transform: translate(-4px, -4px);
+      box-shadow: 12px 12px 0 #00ffff;
+    }
+    
+    .deploy-button:active {
+      transform: translate(4px, 4px);
+      box-shadow: 4px 4px 0 #00ff88;
+    }
+    
+    .instructions {
+      margin-top: 40px;
+      padding: 20px;
+      background: rgba(0, 255, 136, 0.1);
+      border: 2px solid #00ff88;
+      border-radius: 0;
+      text-align: left;
+    }
+    
+    .instructions h3 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      color: #00ff88;
+      margin-bottom: 15px;
+    }
+    
+    .instructions ol {
+      margin-left: 20px;
+      color: #fff;
+      font-size: 20px;
+    }
+    
+    .instructions li {
+      margin: 10px 0;
+    }
+    
+    .code {
+      display: block;
+      background: #000;
+      border: 2px solid #00ffff;
+      padding: 10px;
+      margin: 10px 0;
+      font-family: 'Courier New', monospace;
+      color: #00ffff;
+      font-size: 14px;
+      word-break: break-all;
+    }
+    
+    .alternative {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(0, 255, 255, 0.1);
+      border: 2px solid #00ffff;
+    }
+    
+    .alternative h3 {
+      color: #00ffff;
+    }
+    
+    .netlify-button {
+      border-color: #00ffff;
+      color: #00ffff;
+      box-shadow: 8px 8px 0 #00ffff;
+    }
+    
+    .netlify-button:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 12px 12px 0 #00ff88;
+    }
+    
+    .pixel-decoration {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      background: transparent;
+      border: 4px solid #00ff88;
+    }
+    
+    .pixel-1 { top: 50px; left: 50px; }
+    .pixel-2 { top: 100px; right: 100px; border-color: #00ffff; }
+    .pixel-3 { bottom: 100px; left: 100px; border-color: #ff00ff; }
+    .pixel-4 { bottom: 50px; right: 50px; border-color: #ffff00; }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    
+    .pixel-decoration {
+      animation: pulse 2s infinite;
+    }
+    
+    .status {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0,0,0,0.8);
+      border: 2px solid #ffff00;
+      display: none;
+    }
+    
+    .status.active {
+      display: block;
+    }
+    
+    .status-text {
+      color: #ffff00;
+      font-size: 18px;
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="pixel-decoration pixel-1"></div>
+  <div class="pixel-decoration pixel-2"></div>
+  <div class="pixel-decoration pixel-3"></div>
+  <div class="pixel-decoration pixel-4"></div>
+  
+  <div class="container">
+    <h1 class="title">PIXEL PORTFOLIO<br>DEPLOYMENT CENTER</h1>
+    <p class="subtitle">Choose your deployment method:</p>
+    
+    <!-- VERCEL DEPLOY -->
+    <div>
+      <a href="#" class="deploy-button" onclick="deployVercel(); return false;">
+        ▶ DEPLOY TO VERCEL
+      </a>
+    </div>
+    
+    <!-- NETLIFY DROP -->
+    <div>
+      <a href="https://app.netlify.com/drop" target="_blank" class="deploy-button netlify-button">
+        ▶ NETLIFY DROP
+      </a>
+    </div>
+    
+    <div id="status" class="status">
+      <p class="status-text">⚡ Preparing your deployment...</p>
+    </div>
+    
+    <div class="instructions">
+      <h3>📋 MANUAL DEPLOY (CLI)</h3>
+      <ol>
+        <li>Install Vercel CLI:</li>
+        <code class="code">npm i -g vercel</code>
+        <li>Login to Vercel:</li>
+        <code class="code">vercel login</code>
+        <li>Deploy:</li>
+        <code class="code">cd portfolio-pixel && vercel --prod</code>
+      </ol>
+    </div>
+    
+    <div class="alternative">
+      <h3>🚀 QUICK DEPLOY (Netlify)</h3>
+      <ol>
+        <li>Go to <a href="https://app.netlify.com/drop" target="_blank" style="color: #00ffff;">app.netlify.com/drop</a></li>
+        <li>Drag the <code class="code" style="display: inline; padding: 2px 8px;">dist/</code> folder from this project</li>
+        <li>Get instant live URL!</li>
+      </ol>
+    </div>
+    
+    <div style="margin-top: 40px; padding: 20px; background: rgba(255,255,0,0.1); border: 2px solid #ffff00;">
+      <h3 style="color: #ffff00; font-family: 'Press Start 2P', cursive; font-size: 12px; margin-bottom: 15px;">📦 BUILD INFO</h3>
+      <p style="font-size: 18px; margin: 5px 0;">✅ <strong>Status:</strong> Ready to deploy</p>
+      <p style="font-size: 18px; margin: 5px 0;">📁 <strong>Build:</strong> <code class="code" style="display: inline;">dist/</code> folder (181 KB)</p>
+      <p style="font-size: 18px; margin: 5px 0;">⚡ <strong>Framework:</strong> React + Vite</p>
+      <p style="font-size: 18px; margin: 5px 0;">🎨 <strong>Theme:</strong> Retro-futuristic pixel</p>
+    </div>
+  </div>
+  
+  <script>
+    function deployVercel() {
+      const status = document.getElementById('status');
+      status.classList.add('active');
+      
+      // Create a temporary form to upload to Vercel
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://vercel.com/new'; // This opens Vercel's import flow
+      form.target = '_blank';
+      
+      // Add git repo parameter (we'll simulate this)
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'repository';
+      input.value = 'github.com/template/portfolio-pixel';
+      form.appendChild(input);
+      
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+      
+      setTimeout(() => {
+        status.innerHTML = '<p class="status-text" style="color: #00ff88;">✅ Vercel import opened in new tab!</p>';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

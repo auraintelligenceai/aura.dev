@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/pixel-icon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Portfolio | Retro-Futuristic</title>
+    
+    <!-- Pixel Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    
+    <style>
+      ::-webkit-scrollbar {
+        width: 16px;
+        height: 16px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0f;
+        border: 4px solid #00ff88;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #00ff88;
+        border: 4px solid #0a0a0f;
+        min-height: 40px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #00ffff;
+      }
+      ::selection {
+        background: #00ff88;
+        color: #0a0a0f;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0,0,0,0.15) 0px,
+          rgba(0,0,0,0.15) 2px,
+          transparent 2px,
+          transparent 4px
+        );
+        pointer-events: none;
+        z-index: 9999;
+      }
+    </style>
+  </head>
+  <body class="bg-pixel-bg text-white font-code overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
